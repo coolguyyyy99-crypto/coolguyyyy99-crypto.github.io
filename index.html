@@ -6,13 +6,13 @@
 
 <title>Малик & Валерия</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 body {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(to bottom, #f3ece6, #e2d4c8);
+    font-family: 'Cormorant Garamond', serif;
+    background: linear-gradient(to bottom, #f6efe9, #e7d8cd);
     color: #5b4a42;
 }
 
@@ -32,8 +32,7 @@ body {
 .hero::after {
     content: "";
     position: absolute;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba(0,0,0,0.35);
 }
 
@@ -43,18 +42,20 @@ body {
 }
 
 .hero h1 {
-    font-family: 'Playfair Display';
-    font-size: 60px;
-    letter-spacing: 2px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 70px;
+    font-weight: 400;
+    margin: 0;
 }
 
 .hero p {
     font-size: 18px;
+    margin-top: 10px;
 }
 
-/* SECTION */
+/* SECTIONS */
 .section {
-    padding: 80px 20px;
+    padding: 70px 20px;
 }
 
 /* CARD */
@@ -62,28 +63,32 @@ body {
     max-width: 750px;
     margin: auto;
     padding: 40px;
-    background: rgba(255,255,255,0.8);
-    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.78);
+    backdrop-filter: blur(12px);
     border-radius: 25px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-    transition: 0.4s;
 }
 
-.card:hover {
-    transform: translateY(-5px);
+/* TITLE */
+.title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 44px;
+    text-align: center;
+}
+
+/* DIVIDER */
+.divider {
+    width: 80px;
+    height: 2px;
+    background: #c8a997;
+    margin: 20px auto;
 }
 
 /* TEXT */
-.title {
-    font-family: 'Playfair Display';
-    font-size: 34px;
-    text-align: center;
-}
-
 .subtitle {
     text-align: center;
-    margin-top: 15px;
     line-height: 1.8;
+    font-size: 18px;
 }
 
 /* IMAGE */
@@ -96,14 +101,6 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* DIVIDER */
-.divider {
-    width: 80px;
-    height: 2px;
-    background: #c8a997;
-    margin: 20px auto;
-}
-
 /* TIMER */
 .timer {
     display: flex;
@@ -114,7 +111,7 @@ body {
 
 .timer-box {
     background: white;
-    padding: 20px;
+    padding: 18px;
     border-radius: 15px;
     min-width: 80px;
     text-align: center;
@@ -123,18 +120,6 @@ body {
 .timer-box span {
     font-size: 26px;
     font-weight: bold;
-}
-
-.timer-box small {
-    color: #888;
-}
-
-/* PROGRAM */
-.program-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
 }
 
 /* BUTTON */
@@ -154,7 +139,7 @@ button:hover {
     transform: scale(1.03);
 }
 
-/* FORM */
+/* INPUT */
 input {
     width: 100%;
     padding: 13px;
@@ -187,7 +172,7 @@ input {
 
 /* MOBILE */
 @media(max-width:600px){
-    .hero h1 { font-size: 38px; }
+    .hero h1 { font-size: 42px; }
 }
 </style>
 </head>
@@ -206,11 +191,12 @@ input {
         <div class="title">Дорогие гости</div>
         <div class="divider"></div>
         <div class="subtitle">
-            Мы приглашаем вас стать частью самого важного дня нашей жизни 🤍
+            Мы приглашаем вас разделить с нами самый важный день нашей жизни 🤍
         </div>
     </div>
 </div>
 
+<!-- PHOTO -->
 <img class="image" src="jj.jpg">
 
 <!-- TIMER -->
@@ -227,19 +213,9 @@ input {
     </div>
 </div>
 
-<!-- PROGRAM -->
+<!-- IMAGE INSTEAD OF PROGRAM -->
 <div class="section">
-    <div class="card">
-        <div class="title">Программа дня</div>
-        <div class="divider"></div>
-
-        <div class="program-item"><span>14:20</span><span>Сбор гостей</span></div>
-        <div class="program-item"><span>14:50</span><span>Церемония</span></div>
-        <div class="program-item"><span>16:30</span><span>Welcome</span></div>
-        <div class="program-item"><span>17:00</span><span>Банкет</span></div>
-        <div class="program-item"><span>18:00</span><span>Фотосессия</span></div>
-        <div class="program-item"><span>21:00</span><span>Торт</span></div>
-    </div>
+    <img class="image" src="pisya.jpg">
 </div>
 
 <!-- WISHES -->
@@ -250,13 +226,13 @@ input {
 
         <div class="subtitle">
             Пожалуйста, приходите с хорошим настроением 🤍<br><br>
-            Мы просим не дарить цветы — прекрасной альтернативой станет бутылка вашего любимого вина.<br><br>
-            Если хотите сделать нам ценный и нужный подарок, 
-            мы будем признательны за вклад в бюджет нашей молодой семьи✨
+            Вместо цветов можно подарить бутылку любимого вина.<br><br>
+            Если захотите — будем благодарны за вклад в нашу семью ✨
         </div>
     </div>
 </div>
 
+<!-- PHOTO -->
 <img class="image" src="cc.jpg">
 
 <!-- DRESS CODE -->
@@ -266,7 +242,7 @@ input {
         <div class="divider"></div>
 
         <div class="subtitle">
-            Светлые и пастельные оттенки создадут идеальную атмосферу 🤍
+            Светлые и пастельные оттенки 🤍
         </div>
 
         <img class="image" src="pipi.jpg">
@@ -304,8 +280,6 @@ input {
 </div>
 
 <script>
-
-/* TIMER */
 const weddingDate = new Date("2026-08-29T00:00:00+03:00").getTime();
 
 setInterval(() => {
@@ -317,7 +291,6 @@ setInterval(() => {
     document.getElementById("minutes").innerText = Math.floor(diff / 60000 % 60);
 }, 1000);
 
-/* RSVP */
 function addGuest() {
     const name = document.getElementById("name").value;
     if (!name) return alert("Введите имя");
@@ -340,7 +313,7 @@ function deleteGuest(id) {
     let data = JSON.parse(localStorage.getItem("guests") || "[]");
     const g = data.find(x => x.id === id);
 
-    if (g.code !== code) return alert("Неверный код");
+    if (!g || g.code !== code) return alert("Неверный код");
 
     data = data.filter(x => x.id !== id);
     localStorage.setItem("guests", JSON.stringify(data));
@@ -364,7 +337,6 @@ function render() {
 }
 
 render();
-
 </script>
 
 </body>
