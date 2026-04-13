@@ -9,6 +9,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: 'Cormorant Garamond', serif;
@@ -27,6 +31,7 @@ body {
     text-align: center;
     color: white;
     position: relative;
+    padding: 20px;
 }
 
 .hero::after {
@@ -44,14 +49,11 @@ body {
 .hero h1 {
     font-family: 'Great Vibes', cursive;
     font-size: 70px;
-    font-weight: 400;
     margin: 0;
-    line-height: 1.1;
 }
 
 .hero p {
     font-size: 18px;
-    margin-top: 10px;
 }
 
 /* SECTIONS */
@@ -68,13 +70,13 @@ body {
     backdrop-filter: blur(12px);
     border-radius: 25px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    text-align: center;
 }
 
 /* TITLE */
 .title {
     font-family: 'Great Vibes', cursive;
     font-size: 44px;
-    text-align: center;
 }
 
 /* DIVIDER */
@@ -87,7 +89,6 @@ body {
 
 /* TEXT */
 .subtitle {
-    text-align: center;
     line-height: 1.8;
     font-size: 18px;
 }
@@ -99,28 +100,36 @@ body {
     margin: 40px auto;
     display: block;
     border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 /* TIMER */
 .timer {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .timer-box {
     background: white;
-    padding: 18px;
+    padding: 15px;
     border-radius: 15px;
     min-width: 80px;
-    text-align: center;
 }
 
 .timer-box span {
     font-size: 26px;
     font-weight: bold;
+}
+
+/* INPUT */
+input {
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    font-size: 16px;
 }
 
 /* BUTTON */
@@ -131,22 +140,9 @@ button {
     border: none;
     background: linear-gradient(45deg, #c8a997, #b89584);
     color: white;
-    font-size: 15px;
+    font-size: 16px;
     cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    transform: scale(1.03);
-}
-
-/* INPUT */
-input {
-    width: 100%;
-    padding: 13px;
-    margin: 10px 0;
-    border-radius: 12px;
-    border: 1px solid #ddd;
+    margin-top: 12px;
 }
 
 /* LIST */
@@ -166,14 +162,38 @@ input {
 
 .delete {
     background: #ff6b6b;
-    padding: 6px 12px;
+    padding: 6px 10px;
     border-radius: 8px;
     cursor: pointer;
+    color: white;
+    font-size: 12px;
 }
 
-/* MOBILE */
-@media(max-width:600px){
-    .hero h1 { font-size: 42px; }
+/* MOBILE FIX */
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .section {
+        padding: 40px 15px;
+    }
+
+    .card {
+        padding: 25px 18px;
+    }
+
+    .title {
+        font-size: 34px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .timer {
+        gap: 10px;
+    }
 }
 </style>
 </head>
@@ -184,7 +204,7 @@ input {
 <div class="hero">
     <h1>
         M & V
-        <div style="font-size: 22px; margin-top: 10px; font-family: 'Cormorant Garamond', serif; letter-spacing: 1px;">
+        <div style="font-size:20px; margin-top:10px;">
             Малик & Валерия
         </div>
     </h1>
@@ -212,41 +232,35 @@ input {
         <div class="divider"></div>
 
         <div class="timer">
-            <div class="timer-box"><span id="days"></span><small>дней</small></div>
-            <div class="timer-box"><span id="hours"></span><small>часов</small></div>
-            <div class="timer-box"><span id="minutes"></span><small>минут</small></div>
+            <div class="timer-box"><span id="days"></span><div>дней</div></div>
+            <div class="timer-box"><span id="hours"></span><div>часов</div></div>
+            <div class="timer-box"><span id="minutes"></span><div>минут</div></div>
         </div>
     </div>
 </div>
 
-<!-- IMAGE PLACE -->
-<div class="section">
-    <img class="image" src="pisya.jpg">
-</div>
+<!-- IMAGE -->
+<img class="image" src="pisya.jpg">
 
 <!-- WISHES -->
 <div class="section">
     <div class="card">
         <div class="title">Пожелания</div>
         <div class="divider"></div>
-
         <div class="subtitle">
             Пожалуйста, приходите с хорошим настроением 🤍<br><br>
             Не дарите цветы — лучше эмоции.<br><br>
             Если хотите — будем благодарны за вклад в нашу семью ✨
         </div>
-        
+    </div>
+</div>
 
 <!-- DRESS CODE -->
 <div class="section">
     <div class="card">
         <div class="title">Дресс-код</div>
         <div class="divider"></div>
-
-        <div class="subtitle">
-            Светлые и пастельные оттенки 🤍
-        </div>
-
+        <div class="subtitle">Светлые и пастельные оттенки 🤍</div>
         <img class="image" src="pipi.jpg">
     </div>
 </div>
@@ -256,14 +270,10 @@ input {
     <div class="card">
         <div class="title">Локация</div>
         <div class="divider"></div>
-
-        <div class="subtitle">
-            Казань, Аракчино — зал "VODA"
-        </div>
-
+        <div class="subtitle">Казань, Аракчино — зал "VODA"</div>
         <img class="image" src="boje.jpg">
 
-        <a href="https://2gis.ru/kazan/firm/70000001100829303/tab/menu?m=48.965943%2C55.800816%2F17.36" target="_blank">
+        <a href="https://2gis.ru/kazan/firm/70000001100829303/tab/menu?m=48.965943%2C55.800816%2F17.36">
             <button>📍 Открыть карту</button>
         </a>
     </div>
@@ -289,12 +299,12 @@ setInterval(() => {
     const diff = weddingDate - now;
 
     document.getElementById("days").innerText = Math.floor(diff / 86400000);
-    document.getElementById("hours").innerText = Math.floor(diff / 3600000 % 24);
-    document.getElementById("minutes").innerText = Math.floor(diff / 60000 % 60);
+    document.getElementById("hours").innerText = Math.floor((diff / 3600000) % 24);
+    document.getElementById("minutes").innerText = Math.floor((diff / 60000) % 60);
 }, 1000);
 
 function addGuest() {
-    const name = document.getElementById("name").value;
+    const name = document.getElementById("name").value.trim();
     if (!name) return alert("Введите имя");
 
     const id = Date.now();
@@ -324,8 +334,8 @@ function deleteGuest(id) {
 }
 
 function render() {
-    let list = document.getElementById("list");
-    let data = JSON.parse(localStorage.getItem("guests") || "[]");
+    const list = document.getElementById("list");
+    const data = JSON.parse(localStorage.getItem("guests") || "[]");
 
     list.innerHTML = "<h3>Гости:</h3>";
 
