@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Малик & Валерия</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #f8f4f1;
+    color: #5a4a42;
+}
+
+/* ANIMATION */
+.fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 1s ease;
+}
+.fade.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section {
+    padding: 70px 20px;
+    text-align: center;
+}
+
+.title {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+}
+
+.subtitle {
+    max-width: 700px;
+    margin: 20px auto;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    background: url("dd.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    text-shadow: 0 3px 15px rgba(0,0,0,0.6);
+}
+
+.hero h1 {
+    font-size: 54px;
+    font-family: 'Playfair Display', serif;
+}
+
+/* IMAGE */
+.image {
+    width: 100%;
+    max-width: 750px;
+    border-radius: 20px;
+    margin: 30px auto;
+    display: block;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* CARD */
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 650px;
+    margin: 30px auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* INPUT */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+button {
+    padding: 14px 30px;
+    border: none;
+    border-radius: 25px;
+    background: #d6b8a8;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #c4a292;
+    transform: scale(1.03);
+}
+
+/* LIST */
+.list {
+    max-width: 650px;
+    margin: 20px auto;
+    text-align: left;
+}
+
+.item {
+    background: white;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete {
+    background: #ff6b6b;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* TIMER */
+.timer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.timer div {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+/* MAP */
+iframe {
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    border: none;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .hero h1 { font-size: 34px; }
+    .title { font-size: 28px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>Малик & Валерия</h1>
+    <p>29 августа 2026 • Казань</p>
+</div>
+
+<!-- INTRO -->
+<div class="section fade">
+    <div class="title">Дорогие гости</div>
+    <div class="subtitle">
+        Мы с радостью приглашаем вас разделить с нами самый важный день нашей жизни 🤍
+    </div>
+</div>
+
+<img class="image fade" src="jj.jpg">
+
+<!-- TIMER -->
+<div class="section fade">
+    <div class="title">До свадьбы осталось</div>
+    <div class="timer">
+        <div><span id="days"></span><br>дней</div>
+        <div><span id="hours"></span><br>часов</div>
+        <div><span id="minutes"></span><br>минут</div>
+    </div>
+</div>
+
+<!-- DATE -->
+<div class="section fade">
+    <div class="card">
+        <div class="title">Дата свадьбы</div>
+        <div class="subtitle">29 августа 2026</div>
+    </div>
+</div>
+
+<!-- CEREMONY -->
+<img class="image fade" src="cc.jpg">
+
+<!-- LOCATION -->
+<div class="section fade">
+    <div class="card">
+        <div class="title">Зал VODA</div>
+        <div class="subtitle">Казань, Аракчино</div>
+
+        <iframe src="https://maps.google.com/maps?q=Аракчино%20Казань&output=embed"></iframe>
+    </div>
+</div>
+
+<!-- RSVP -->
+<div class="section fade">
+    <div class="card">
+        <div class="title">Подтвердите участие</div>
+
+        <input id="name" type="text" placeholder="Ваше имя">
+
+        <button onclick="addGuest()">Отправить</button>
+    </div>
+
+    <div class="list" id="list"></div>
+</div>
+
+<!-- FINAL -->
+<div class="section fade">
+    <div class="title">Ждём вас 💍</div>
+</div>
+
+<script>
+
+/* TIMER */
+const weddingDate = new Date("August 29, 2026 00:00:00").getTime();
+
+setInterval(() => {
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
+
+    document.getElementById("days").innerText = Math.floor(diff / 86400000);
+    document.getElementById("hours").innerText = Math.floor(diff / 3600000 % 24);
+    document.getElementById("minutes").innerText = Math.floor(diff / 60000 % 60);
+}, 1000);
+
+/* ADD GUEST (SECURE) */
+function addGuest() {
+    const name = document.getElementById("name").value;
+    if (!name) return alert("Введите имя");
+
+    const id = Date.now();
+    const code = Math.random().toString(36).substring(2, 8);
+
+    let data = JSON.parse(localStorage.getItem("guests") || "[]");
+
+    data.push({ id, name, code });
+
+    localStorage.setItem("guests", JSON.stringify(data));
+
+    alert("Ваш личный код удаления: " + code + " (сохраните!)");
+
+    render();
+}
+
+/* DELETE WITH CODE */
+function deleteGuest(id) {
+    const inputCode = prompt("Введите ваш код:");
+
+    let data = JSON.parse(localStorage.getItem("guests") || "[]");
+    const guest = data.find(g => g.id === id);
+
+    if (!guest) return;
+
+    if (guest.code !== inputCode) {
+        return alert("Неверный код ❌");
+    }
+
+    data = data.filter(g => g.id !== id);
+
+    localStorage.setItem("guests", JSON.stringify(data));
+
+    render();
+}
+
+/* RENDER LIST */
+function render() {
+    let list = document.getElementById("list");
+    let data = JSON.parse(localStorage.getItem("guests") || "[]");
+
+    list.innerHTML = "<h3>Список гостей:</h3>";
+
+    data.forEach(g => {
+        list.innerHTML += `
+            <div class="item">
+                <b>${g.name}</b>
+                <div class="delete" onclick="deleteGuest(${g.id})">удалить</div>
+            </div>
+        `;
+    });
+}
+
+render();
+
+/* ANIMATION */
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add("show");
+    });
+});
+
+document.querySelectorAll(".fade").forEach(el => observer.observe(el));
+
+</script>
+
+</body>
+</html>
