@@ -292,6 +292,34 @@ button {
 </div>
 
 <script>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* 🔥 ВСТАВЬ СЮДА СВОЙ firebaseConfig */
+const firebaseConfig = {
+ apiKey: "AIzaSyB3dmV-61rKm0l7_HdZDaqgKsTbfhP-bPQ",
+  authDomain: "wedding-9b38d.firebaseapp.com",
+  projectId: "wedding-9b38d",
+  storageBucket: "wedding-9b38d.firebasestorage.app",
+  messagingSenderId: "876796025000",
+  appId: "1:876796025000:web:80b629100614a801b80a9d",
+  measurementId: "G-284YT59RGX"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/* ТАЙМЕР */
 const weddingDate = new Date("2026-08-29T00:00:00+03:00").getTime();
 
 setInterval(() => {
@@ -303,53 +331,44 @@ setInterval(() => {
     document.getElementById("minutes").innerText = Math.floor((diff / 60000) % 60);
 }, 1000);
 
-function addGuest() {
+/* ДОБАВИТЬ ГОСТЯ */
+window.addGuest = async function() {
     const name = document.getElementById("name").value.trim();
     if (!name) return alert("Введите ФИО");
 
-    const id = Date.now();
-    const code = Math.random().toString(36).substring(2, 8);
+    await addDoc(collection(db, "guests"), {
+        name: name,
+        created: Date.now()
+    });
 
-    let data = JSON.parse(localStorage.getItem("guests") || "[]");
-    data.push({ id, name, code });
-
-    localStorage.setItem("guests", JSON.stringify(data));
-
-    alert("Ваш код удаления: " + code);
+    document.getElementById("name").value = "";
     render();
-}
+};
 
-function deleteGuest(id) {
-    const code = prompt("Введите код:");
-
-    let data = JSON.parse(localStorage.getItem("guests") || "[]");
-    const g = data.find(x => x.id === id);
-
-    if (!g || g.code !== code) return alert("Неверный код");
-
-    data = data.filter(x => x.id !== id);
-    localStorage.setItem("guests", JSON.stringify(data));
-
+/* УДАЛЕНИЕ */
+window.deleteGuest = async function(id) {
+    await deleteDoc(doc(db, "guests", id));
     render();
-}
+};
 
-function render() {
+/* РЕНДЕР */
+async function render() {
     const list = document.getElementById("list");
-    const data = JSON.parse(localStorage.getItem("guests") || "[]");
-
     list.innerHTML = "<h3>Гости:</h3>";
 
-    data.forEach(g => {
+    const querySnapshot = await getDocs(collection(db, "guests"));
+
+    querySnapshot.forEach((docu) => {
+        const g = docu.data();
+
         list.innerHTML += `
         <div class="item">
             ${g.name}
-            <div class="delete" onclick="deleteGuest(${g.id})">удалить</div>
+            <div class="delete" onclick="deleteGuest('${docu.id}')">удалить</div>
         </div>`;
     });
 }
 
 render();
-</script>
 
-</body>
-</html>
+</script>
