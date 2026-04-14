@@ -9,9 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -41,10 +39,7 @@ body {
     background: rgba(0,0,0,0.35);
 }
 
-.hero * {
-    position: relative;
-    z-index: 2;
-}
+.hero * { position: relative; z-index: 2; }
 
 .hero h1 {
     font-family: 'Great Vibes', cursive;
@@ -52,16 +47,11 @@ body {
     margin: 0;
 }
 
-.hero p {
-    font-size: 18px;
-}
+.hero p { font-size: 18px; }
 
 /* SECTIONS */
-.section {
-    padding: 70px 20px;
-}
+.section { padding: 70px 20px; }
 
-/* CARD */
 .card {
     max-width: 750px;
     margin: auto;
@@ -73,13 +63,11 @@ body {
     text-align: center;
 }
 
-/* TITLE */
 .title {
     font-family: 'Great Vibes', cursive;
     font-size: 44px;
 }
 
-/* DIVIDER */
 .divider {
     width: 80px;
     height: 2px;
@@ -87,13 +75,11 @@ body {
     margin: 20px auto;
 }
 
-/* TEXT */
 .subtitle {
     line-height: 1.8;
     font-size: 18px;
 }
 
-/* IMAGE */
 .image {
     width: 100%;
     max-width: 750px;
@@ -114,7 +100,7 @@ body {
     background: white;
     padding: 15px;
     border-radius: 15px;
-    min-width: 80px;
+    min-width: 90px;
 }
 
 .timer-box span {
@@ -122,85 +108,18 @@ body {
     font-weight: bold;
 }
 
-/* INPUT */
-input {
-    width: 100%;
-    padding: 14px;
-    margin-top: 15px;
-    border-radius: 12px;
-    border: 1px solid #ddd;
-    font-size: 16px;
-}
-
-/* BUTTON */
-button {
-    width: 100%;
-    padding: 15px;
-    border-radius: 30px;
-    border: none;
-    background: linear-gradient(45deg, #c8a997, #b89584);
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 12px;
-}
-
-/* LIST */
-.list {
-    max-width: 750px;
-    margin: 20px auto;
-}
-
-.item {
-    background: white;
-    padding: 12px;
-    border-radius: 12px;
-    margin: 6px 0;
-    display: flex;
-    justify-content: space-between;
-}
-
-.delete {
-    background: #ff6b6b;
-    padding: 6px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    color: white;
-    font-size: 12px;
-}
-
-/* MOBILE FIX */
+/* MOBILE */
 @media (max-width: 600px) {
-    .hero h1 {
-        font-size: 42px;
-    }
-
-    .section {
-        padding: 40px 15px;
-    }
-
-    .card {
-        padding: 25px 18px;
-    }
-
-    .title {
-        font-size: 34px;
-    }
-
-    .subtitle {
-        font-size: 16px;
-    }
-
-    .timer {
-        gap: 10px;
-    }
+    .hero h1 { font-size: 42px; }
+    .section { padding: 40px 15px; }
+    .card { padding: 25px 18px; }
+    .title { font-size: 34px; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
 <div class="hero">
     <h1>
         M & V
@@ -211,7 +130,6 @@ button {
     <p>29 августа 2026 • Казань</p>
 </div>
 
-<!-- INTRO -->
 <div class="section">
     <div class="card">
         <div class="title">Дорогие гости</div>
@@ -222,27 +140,24 @@ button {
     </div>
 </div>
 
-<!-- PHOTO -->
 <img class="image" src="jj.jpg">
 
-<!-- TIMER -->
 <div class="section">
     <div class="card">
         <div class="title">До свадьбы осталось</div>
         <div class="divider"></div>
 
         <div class="timer">
-            <div class="timer-box"><span id="days"></span><div>дней</div></div>
-            <div class="timer-box"><span id="hours"></span><div>часов</div></div>
-            <div class="timer-box"><span id="minutes"></span><div>минут</div></div>
+            <div class="timer-box"><span id="days">0</span><div>дней</div></div>
+            <div class="timer-box"><span id="hours">0</span><div>часов</div></div>
+            <div class="timer-box"><span id="minutes">0</span><div>минут</div></div>
+            <div class="timer-box"><span id="seconds">0</span><div>секунд</div></div>
         </div>
     </div>
 </div>
 
-<!-- IMAGE -->
 <img class="image" src="pisya.jpg">
 
-<!-- WISHES -->
 <div class="section">
     <div class="card">
         <div class="title">Пожелания</div>
@@ -255,7 +170,6 @@ button {
     </div>
 </div>
 
-<!-- DRESS CODE -->
 <div class="section">
     <div class="card">
         <div class="title">Дресс-код</div>
@@ -265,7 +179,6 @@ button {
     </div>
 </div>
 
-<!-- LOCATION -->
 <div class="section">
     <div class="card">
         <div class="title">Локация</div>
@@ -279,3 +192,35 @@ button {
     </div>
 </div>
 
+<script>
+const weddingDate = new Date("2026-08-29T00:00:00").getTime();
+
+function updateTimer() {
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
+
+    if (diff <= 0) {
+        document.getElementById("days").innerText = 0;
+        document.getElementById("hours").innerText = 0;
+        document.getElementById("minutes").innerText = 0;
+        document.getElementById("seconds").innerText = 0;
+        return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("seconds").innerText = seconds;
+}
+
+updateTimer();
+setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
