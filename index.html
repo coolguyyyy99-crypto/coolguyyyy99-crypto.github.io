@@ -305,7 +305,7 @@ setInterval(() => {
 
 function addGuest() {
     const name = document.getElementById("name").value.trim();
-    if (!name) return alert("Введите имя");
+    if (!name) return alert("Введите ФИО");
 
     const id = Date.now();
     const code = Math.random().toString(36).substring(2, 8);
