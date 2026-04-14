@@ -304,17 +304,15 @@ import {
   doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-/* 🔥 ВСТАВЬ СЮДА СВОЙ firebaseConfig */
+/* 🔥 ТВОЙ FIREBASE (у тебя уже вставлен — оставь как есть) */
 const firebaseConfig = {
- apiKey: "AIzaSyB3dmV-61rKm0l7_HdZDaqgKsTbfhP-bPQ",
+  apiKey: "AIzaSyB3dmV-61rKm0l7_HdZDaqgKsTbfhP-bPQ",
   authDomain: "wedding-9b38d.firebaseapp.com",
   projectId: "wedding-9b38d",
   storageBucket: "wedding-9b38d.firebasestorage.app",
   messagingSenderId: "876796025000",
-  appId: "1:876796025000:web:80b629100614a801b80a9d",
-  measurementId: "G-284YT59RGX"
+  appId: "1:876796025000:web:80b629100614a801b80a9d"
 };
-
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -336,17 +334,29 @@ window.addGuest = async function() {
     const name = document.getElementById("name").value.trim();
     if (!name) return alert("Введите ФИО");
 
+    const code = Math.random().toString(36).substring(2, 8);
+
     await addDoc(collection(db, "guests"), {
         name: name,
+        code: code,
         created: Date.now()
     });
+
+    alert("Ваш код для удаления: " + code);
 
     document.getElementById("name").value = "";
     render();
 };
 
-/* УДАЛЕНИЕ */
-window.deleteGuest = async function(id) {
+/* УДАЛЕНИЕ (ТОЛЬКО С КОДОМ) */
+window.deleteGuest = async function(id, realCode) {
+    const userCode = prompt("Введите код для удаления:");
+
+    if (userCode !== realCode) {
+        alert("Неверный код");
+        return;
+    }
+
     await deleteDoc(doc(db, "guests", id));
     render();
 };
@@ -364,7 +374,9 @@ async function render() {
         list.innerHTML += `
         <div class="item">
             ${g.name}
-            <div class="delete" onclick="deleteGuest('${docu.id}')">удалить</div>
+            <div class="delete" onclick="deleteGuest('${docu.id}', '${g.code}')">
+                удалить
+            </div>
         </div>`;
     });
 }
